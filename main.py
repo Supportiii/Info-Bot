@@ -19,7 +19,6 @@ START_TEXT = """
 Hello {}, I am a user or chat information finder telegram bot.
 - Send /info for your info
 - Send /info reply to a forward message for chat or user info
-Made by @FayasNoushad
 """
 BUTTONS = InlineKeyboardMarkup(
         [[
