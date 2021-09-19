@@ -22,7 +22,7 @@ Hola {}, Mit diesem Bot kannst du verschiedene tolle Dinge tun!
 """
 BUTTONS = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton('⚙ Mein erhärmlicher Kanal ⚙', url='https://t.me/iSupCh')
+        InlineKeyboardButton('⚙ Mein erbärmlicher Kanal ⚙', url='https://t.me/iSupCh')
         ]]
     )
 
