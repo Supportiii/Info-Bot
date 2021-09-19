@@ -5,8 +5,6 @@
 # License -> https://github.com/FayasNoushad/Info-Bot/blob/main/LICENSE
 
 import os
-import requests
-from requests.utils import requote_uri
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
@@ -17,21 +15,19 @@ FayasNoushad = Client(
     api_hash = os.environ["API_HASH"]
 )
 
-API = "https://api.sumanjay.cf/covid/?country="
-
 START_TEXT = """
-Hello {}, I am a Bot for all!
-
-- /info Shows your Info
-- /covid Shows covid numbers
+Hello {}, I am a user or chat information finder telegram bot.
+- Send /info for your info
+- Send /info reply to a forward message for chat or user info
+Made by @FayasNoushad
 """
 BUTTONS = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton('⚙ Join Channel ⚙', url='https://t.me/iSupCh')
+        InlineKeyboardButton('⚙ Join Updates Channel ⚙', url='https://telegram.me/FayasNoushad')
         ]]
     )
 
-@FayasNoushad.on_message(filters.private & filters.command(["info"]))
+@FayasNoushad.on_message(filters.private & filters.command(["start"]))
 async def start(bot, update):
     text = START_TEXT.format(update.from_user.mention)
     reply_markup = BUTTONS
@@ -40,16 +36,6 @@ async def start(bot, update):
         disable_web_page_preview=True,
         reply_markup=reply_markup,
         quote=True
-    )
-    
-@FayasNoushad.on_message(filters.private & filters.text)
-async def reply_info(bot, update):
-    reply_markup = BUTTONS
-    await update.reply_text(
-        text=covid_info(update.text),
-        disable_web_page_preview=True,
-        quote=True,
-        reply_markup=reply_markup
     )
 
 @FayasNoushad.on_message((filters.private | filters.group) & filters.command(["info", "information"]))
@@ -71,6 +57,8 @@ async def info(bot, update):
             disable_web_page_preview=True,
             quote=True
         )
+    except Exception as error:
+        await update.reply_text(error)
 
 def user_info(user):
     text = "--**User Details:**--\n"
@@ -106,36 +94,5 @@ def chat_info(chat):
     text += f"\n**Is Fake:** True" if chat.is_fake else ""
     text += f"\n\nMade by @FayasNoushad"
     return text
-
-def covid_info(country_name):
-    try:
-        r = requests.get(API + requote_uri(country_name.lower()))
-        info = r.json()
-        country = info['country'].capitalize()
-        active = info['active']
-        confirmed = info['confirmed']
-        deaths = info['deaths']
-        info_id = info['id']
-        last_update = info['last_update']
-        latitude = info['latitude']
-        longitude = info['longitude']
-        recovered = info['recovered']
-        covid_info = f"""
---**Covid 19 Information**--
-Country : `{country}`
-Actived : `{active}`
-Confirmed : `{confirmed}`
-Deaths : `{deaths}`
-ID : `{info_id}`
-Last Update : `{last_update}`
-Latitude : `{latitude}`
-Longitude : `{longitude}`
-Recovered : `{recovered}`
-Made by @FayasNoushad
-"""
-        return covid_info
-    except Exception as error:
-        return error
-    await update.reply_text(error)
 
 FayasNoushad.run()
