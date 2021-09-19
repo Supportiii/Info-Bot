@@ -22,7 +22,7 @@ Hello {}, I am a user or chat information finder telegram bot.
 """
 BUTTONS = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton('⚙ Join Updates Channel ⚙', url='https://telegram.me/FayasNoushad')
+        InlineKeyboardButton('⚙ Join Channel ⚙', url='https://telegram.me/FayasNoushad')
         ]]
     )
 
