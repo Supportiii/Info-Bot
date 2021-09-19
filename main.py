@@ -16,13 +16,13 @@ FayasNoushad = Client(
 )
 
 START_TEXT = """
-Hello {}, I am a user or chat information finder telegram bot.
-- Send /info for your info
-- Send /info reply to a forward message for chat or user info
+Hola {}, Mit diesem Bot kannst du verschiedene tolle Dinge tun!
+- Sende /info für deine Info
+- Antworte /info auf eine weitergeleitete Nachricht für die ChatInfo/UserInfo
 """
 BUTTONS = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton('⚙ Join Channel ⚙', url='https://telegram.me/FayasNoushad')
+        InlineKeyboardButton('⚙ Mein erhärmlicher Kanal ⚙', url='https://t.me/iSupCh')
         ]]
     )
 
@@ -60,38 +60,38 @@ async def info(bot, update):
         await update.reply_text(error)
 
 def user_info(user):
-    text = "--**User Details:**--\n"
-    text += f"\n**First Name:** `{user.first_name}`"
-    text += f"\n**Last Name:** `{user.last_name},`" if user.last_name else ""
-    text += f"\n**User Id:** `{user.id}`"
-    text += f"\n**Username:** @{user.username}" if user.username else ""
-    text += f"\n**User Link:** {user.mention}" if user.username else ""
-    text += f"\n**DC ID:** `{user.dc_id}`" if user.dc_id else ""
-    text += f"\n**Is Deleted:** True" if user.is_deleted else ""
-    text += f"\n**Is Bot:** True" if user.is_bot else ""
-    text += f"\n**Is Verified:** True" if user.is_verified else ""
-    text += f"\n**Is Restricted:** True" if user.is_verified else ""
-    text += f"\n**Is Scam:** True" if user.is_scam else ""
-    text += f"\n**Is Fake:** True" if user.is_fake else ""
-    text += f"\n**Is Support:** True" if user.is_support else ""
-    text += f"\n**Language Code:** {user.language_code}" if user.language_code else ""
-    text += f"\n**Status:** {user.status}" if user.status else ""
-    text += f"\n\nMade by @FayasNoushad"
+    text = "--**Nutzer Informationen:**--\n"
+    text += f"\n**VorName:** `{user.first_name}`"
+    text += f"\n**NachName:** `{user.last_name},`" if user.last_name else "❌"
+    text += f"\n**Nutzername:** @{user.username}" if user.username else "❌"
+    text += f"\n**Link:** {user.mention}" if user.username else "❌"
+    text += f"\n**Id:** `{user.id}`"
+    text += f"\n**DC:** `{user.dc_id}`" if user.dc_id else "❌"
+    text += f"\n**Gelöscht:** True" if user.is_deleted else "❌"
+    text += f"\n**Bot:** True" if user.is_bot else "❌"
+    text += f"\n**Verifiziert:** True" if user.is_verified else "❌"
+    text += f"\n**Eingeschränkt:** True" if user.is_verified else "❌"
+    text += f"\n**Betrug:** True" if user.is_scam else "❌"
+    text += f"\n**Fake:** True" if user.is_fake else "❌"
+    text += f"\n**Support:** True" if user.is_support else "❌"
+    text += f"\n**Sprach-Code:** {user.language_code}" if user.language_code else "❌"
+    text += f"\n**Status:** {user.status}" if user.status else "❌"
+    text += f"\n\nGemacht von @TLGRM_Support"
     return text
 
 def chat_info(chat):
-    text = "--**Chat Details**--\n" 
-    text += f"\n**Title:** `{chat.title}`"
-    text += f"\n**Chat ID:** `{chat.id}`"
-    text += f"\n**Username:** @{chat.username}" if chat.username else ""
-    text += f"\n**Type:** `{chat.type}`"
-    text += f"\n**DC ID:** `{chat.dc_id}`"
-    text += f"\n**Is Verified:** True" if chat.is_verified else ""
-    text += f"\n**Is Restricted:** True" if chat.is_verified else ""
-    text += f"\n**Is Creator:** True" if chat.is_creator else ""
-    text += f"\n**Is Scam:** True" if chat.is_scam else ""
-    text += f"\n**Is Fake:** True" if chat.is_fake else ""
-    text += f"\n\nMade by @FayasNoushad"
+    text = "--**Chat-Informationen**--\n" 
+    text += f"\n**Titel:** `{chat.title}`"
+    text += f"\n**Nutzername:** @{chat.username}" if chat.username else "❌"
+    text += f"\n**Art:** `{chat.type}`"
+    text += f"\n**ID:** `{chat.id}`"
+    text += f"\n**DC:** `{chat.dc_id}`"
+    text += f"\n**Verifiziert:** True" if chat.is_verified else "❌"
+    text += f"\n**Eingeschränkt:** True" if chat.is_verified else "❌"
+    text += f"\n**Ersteller*in:** True" if chat.is_creator else "❌"
+    text += f"\n**Betrug:** True" if chat.is_scam else "❌"
+    text += f"\n**Fake:** True" if chat.is_fake else "❌"
+    text += f"\n\nGemacht von @TLGRM_Support"
     return text
 
 FayasNoushad.run()
